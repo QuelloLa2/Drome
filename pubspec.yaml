@@ -1,10 +1,11 @@
-name: navidrome
-description: "A new Flutter project."
-publish_to: 'none'
-version: 0.1.0+1
+name: drome
+description: "Music App"
+publish_to: "none"
+version: 0.0.1
 
 environment:
-  sdk: ^3.13.5
+  sdk: ^3.13.7
+  flutter: ^3.47.9
 
 dependencies:
   flutter:
@@ -12,6 +13,7 @@ dependencies:
 
   flutter_secure_storage: ^11.2.0
   http: ^1.6.0
+  crypto: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +22,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Quantico
+      fonts:
+        - asset: fonts/Quantico-Regular.ttf
+        - asset: fonts/Quantico-Bold.ttf
+          weight: 700
+    - family: Dots
+      fonts:
+        - asset: fonts/dots-font.otf

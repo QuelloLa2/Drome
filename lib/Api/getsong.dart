@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:navidrome/Api/storage.dart';
+import 'package:drome/Api/storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:navidrome/Class/song.dart';
+import 'package:drome/Class/song.dart';
 
 Future<List<Song>> getSong() async {
   final response = await http.get(await getUri());
