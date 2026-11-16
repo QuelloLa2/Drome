@@ -1,9 +1,10 @@
 import 'package:drome/Account/Widget/confermbutton.dart';
+import 'package:drome/Account/Widget/logotext.dart';
 import 'package:drome/Account/Widget/textfield.dart';
 import 'package:flutter/material.dart';
 
 class BaseAccount extends StatefulWidget {
-  const new({super.key});
+  const BaseAccount({super.key});
 
   @override
   State<BaseAccount> createState() => _BaseAccountState();
@@ -28,28 +29,39 @@ class _BaseAccountState extends State<BaseAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height / 2.8),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: Color(0xFF0E0E0E),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Column(
+              children: [
+                spacing(3.9),
 
-              TextInput(label: "Server Url", textController: _listEditorController[0]),
-              SizedBox(height: MediaQuery.of(context).size.height / 30),
+                LogoText(),
+                spacing(32),
 
-              TextInput(label: "Name", textController: _listEditorController[1]),
-              SizedBox(height: MediaQuery.of(context).size.height / 30),
+                TextInput(label: "Server Url", textController: _listEditorController[0]),
+                spacing(30),
 
-              TextInput(label: "Password", textController: _listEditorController[2]),
-              SizedBox(height: MediaQuery.of(context).size.height / 30),
+                TextInput(label: "Name", textController: _listEditorController[1]),
+                spacing(30),
 
-              ConfermButton(label: "Conferm", listEditorController: _listEditorController),
-            ],
+                TextInput(label: "Password", textController: _listEditorController[2]),
+                spacing(30),
+
+                ConfermButton(label: "Conferm", listEditorController: _listEditorController),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget spacing(double size) {
+    return SizedBox(height: MediaQuery.of(context).size.height / size);
   }
 }

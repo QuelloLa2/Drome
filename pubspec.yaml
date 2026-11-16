@@ -19,6 +19,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_icons:
+  android: true
+  image_path: "assets/icon.png"
 
 flutter:
   uses-material-design: true
@@ -32,3 +37,6 @@ flutter:
     - family: Dots
       fonts:
         - asset: fonts/dots-font.otf
+
+  assets:
+    - assets/icon.png

@@ -11,34 +11,36 @@ Future<List<Song>> getSong() async {
 
   if (response.statusCode == 200 || response.statusCode == 201) {
     var data = jsonDecode(response.body) as Map<String, dynamic>;
-    var songs = data['subsonic-response']['searchResult3']['song'] as List<dynamic>;
+    var songs = data['subsonic-response']?['searchResult3']?['song'] as List<dynamic>?;
 
-    for (var song in songs) {
-      listSongs.add(
-        Song(
-          artist: song['artist'],
-          idArtist: song['artistId'],
-          genre: song['genre'] ?? "Alternative",
-          nameAlbum: song['album'],
-          idAlbum: song['albumId'],
-          nameSong: song['title'],
-          idSong: song['id'],
-          trackCount: song['track'],
-          duration: song['duration'],
-          contentType: song['contentType'],
-          bitRate: song['bitRate'],
-          size: song['size'],
-          playCount: song['playCount'],
-          path: song['path'],
-        ),
-      );
+    if (songs != null) {
+      for (var song in songs) {
+        listSongs.add(
+          Song(
+            artist: song['artist'],
+            idArtist: song['artistId'],
+            genre: song['genre'] ?? "Alternative",
+            nameAlbum: song['album'],
+            idAlbum: song['albumId'],
+            nameSong: song['title'],
+            idSong: song['id'],
+            trackCount: song['track'],
+            duration: song['duration'],
+            contentType: song['contentType'],
+            bitRate: song['bitRate'],
+            size: song['size'],
+            playCount: song['playCount'],
+            path: song['path'],
+          ),
+        );
+      }
     }
   }
   return listSongs;
 }
 
 Future<Uri> getUri() async {
-  final url = await storage.read(key: 'server');
+  final url = await storage.read(key: 'Server');
 
   final uri = Uri.parse(url!);
 
@@ -50,9 +52,9 @@ Future<Uri> getUri() async {
       'f': 'json',
       'v': '1.16.1',
       'c': 'Drome',
-      'u': '${await storage.read(key: 'username')}',
-      't': '${await storage.read(key: 'hashPassword')}',
-      's': '${await storage.read(key: 'hashSalt')}',
+      'u': '${await storage.read(key: 'Username')}',
+      't': '${await storage.read(key: 'Password')}',
+      's': '${await storage.read(key: 'Salt')}',
       'artistCount': '0',
       'albumCount': '0',
       'songCount': '30',

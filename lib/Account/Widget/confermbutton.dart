@@ -7,17 +7,27 @@ import 'dart:math';
 import 'dart:convert';
 
 class ConfermButton extends StatelessWidget {
-  const new({super.key, required this.label, required this._listEditorController});
+  const ConfermButton({super.key, required this.label, required this._listEditorController});
 
   final String label;
   final List<TextEditingController> _listEditorController;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: pingServer, child: Text(label));
+    return ElevatedButton(
+      onPressed: pingServer,
+      style: ElevatedButton.styleFrom(minimumSize: Size(130, 60)),
+      child: Text(label, style: TextStyle(fontSize: 20)),
+    );
   }
 
   void pingServer() async {
+    if (_listEditorController[0].text.isEmpty ||
+        _listEditorController[1].text.isEmpty ||
+        _listEditorController[2].text.isEmpty) {
+      return;
+    }
+
     String salt = _generateSalt();
     String server = _listEditorController[0].text;
     String username = _listEditorController[1].text;

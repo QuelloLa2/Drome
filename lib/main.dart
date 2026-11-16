@@ -1,4 +1,5 @@
 import 'package:drome/Account/base.dart';
+import 'package:drome/Home/base.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +12,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Quantico'),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        fontFamily: 'Quantico',
+        colorSchemeSeed: Color(0xFF005A5A),
+      ),
       home: const Drome(),
     );
   }
