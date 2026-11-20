@@ -1,3 +1,3 @@
-# navidrome
+# Drome
 
 A new Flutter project.

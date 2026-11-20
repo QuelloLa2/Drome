@@ -15,7 +15,7 @@ class _TopBarState extends State<TopBar> {
   Widget build(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(MediaQuery.of(context).size.height / 28),
-      child: AppBar(backgroundColor: Colors.red),
+      child: AppBar(backgroundColor: Color(0xFF005A5A)),
     );
   }
 }

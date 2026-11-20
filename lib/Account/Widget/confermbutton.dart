@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:drome/Api/storage.dart';
+import 'package:drome/Utils/storage.dart' as auth;
 import 'package:drome/Api/ping.dart' as ping;
 import 'package:crypto/crypto.dart';
 
@@ -7,10 +7,16 @@ import 'dart:math';
 import 'dart:convert';
 
 class ConfermButton extends StatelessWidget {
-  const ConfermButton({super.key, required this.label, required this._listEditorController});
+  const ConfermButton({
+    super.key,
+    required this.label,
+    required this._listEditorController,
+    required this.updateAuth,
+  });
 
   final String label;
   final List<TextEditingController> _listEditorController;
+  final Function updateAuth;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +37,16 @@ class ConfermButton extends StatelessWidget {
     String salt = _generateSalt();
     String server = _listEditorController[0].text;
     String username = _listEditorController[1].text;
-    String hashPassword = _generatePassword(_listEditorController[2].text, salt);
+    String password = _generatePassword(_listEditorController[2].text, salt);
 
-    final (data, success) = await ping.pingServer(server, username, hashPassword, salt);
+    final (data, success) = await ping.pingServer(server, username, password, salt);
     if (success && data == null) {
-      storage.write(key: "Server", value: server);
-      storage.write(key: "Username", value: username);
-      storage.write(key: "Password", value: hashPassword);
-      storage.write(key: "Salt", value: data);
+      auth.setServer(server);
+      auth.setUsername(username);
+      auth.setPassword(password);
+      auth.setSalt(salt);
+      updateAuth();
     }
-
-    print(data);
-    print(success);
   }
 
   String _generateSalt([int length = 6]) {

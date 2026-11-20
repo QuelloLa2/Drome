@@ -4,7 +4,9 @@ import 'package:drome/Account/Widget/textfield.dart';
 import 'package:flutter/material.dart';
 
 class BaseAccount extends StatefulWidget {
-  const BaseAccount({super.key});
+  const BaseAccount({super.key, required this.updateAuth});
+
+  final Function updateAuth;
 
   @override
   State<BaseAccount> createState() => _BaseAccountState();
@@ -52,7 +54,11 @@ class _BaseAccountState extends State<BaseAccount> {
                 TextInput(label: "Password", textController: _listEditorController[2]),
                 spacing(30),
 
-                ConfermButton(label: "Conferm", listEditorController: _listEditorController),
+                ConfermButton(
+                  label: "Conferm",
+                  listEditorController: _listEditorController,
+                  updateAuth: widget.updateAuth,
+                ),
               ],
             ),
           ),
