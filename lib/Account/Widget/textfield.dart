@@ -11,7 +11,6 @@ class TextInput extends StatefulWidget {
 }
 
 class TextInputState extends State<TextInput> {
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,8 +24,10 @@ class TextInputState extends State<TextInput> {
           labelText: widget.label,
         ),
         obscureText: widget.label.compareTo("Password") == 0 ? true : false,
+        autofillHints: widget.label.compareTo("Password") == 0
+            ? [AutofillHints.password]
+            : [AutofillHints.username],
       ),
     );
   }
-
 }

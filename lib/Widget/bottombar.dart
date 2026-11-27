@@ -24,7 +24,6 @@ class Bottombar extends StatelessWidget {
         _barItem(Icons.home_sharp, "Home"),
         _barItem(Icons.library_books_sharp, "Library"),
         _barItem(Icons.search_sharp, "Search"),
-        _barItem(Icons.person_sharp, "Profile"),
       ],
     );
   }

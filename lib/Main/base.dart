@@ -1,28 +1,26 @@
-import 'package:drome/Widget/appbar.dart';
+import 'package:drome/Main/Home/base.dart';
 import 'package:drome/Widget/bottombar.dart';
 import 'package:flutter/material.dart';
 
-class BaseHome extends StatefulWidget {
-  const BaseHome({super.key});
+class BaseMain extends StatefulWidget {
+  const BaseMain({super.key});
 
   @override
-  State<BaseHome> createState() => _BaseHomeState();
+  State<BaseMain> createState() => _BaseMainState();
 }
 
-class _BaseHomeState extends State<BaseHome> {
+class _BaseMainState extends State<BaseMain> {
   int currentPage = 0;
 
   final List<Widget> screens = [
-    Center(child: Text('Home Screen')),
-    Center(child: Text('Library Screen')),
+    BaseHome(),
+    Center(child: Text('Playlist Screen')),
     Center(child: Text('Search Screen')),
-    Center(child: Text('Profile Screen')),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopBar(),
       body: screens[currentPage],
       bottomNavigationBar: Bottombar(changePage: _changePage, currentPage: currentPage),
     );

@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:drome/Account/Widget/confermbutton.dart';
 import 'package:drome/Account/Widget/logotext.dart';
 import 'package:drome/Account/Widget/textfield.dart';
-import 'package:flutter/material.dart';
+import 'package:drome/Utils/spacing.dart';
 
 class BaseAccount extends StatefulWidget {
   const BaseAccount({super.key, required this.updateAuth});
@@ -40,19 +42,19 @@ class _BaseAccountState extends State<BaseAccount> {
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Column(
               children: [
-                spacing(3.9),
+                dosomespace(3.9, context),
 
                 LogoText(),
-                spacing(32),
+                dosomespace(32, context),
 
                 TextInput(label: "Server Url", textController: _listEditorController[0]),
-                spacing(30),
+                dosomespace(30, context),
 
-                TextInput(label: "Name", textController: _listEditorController[1]),
-                spacing(30),
+                TextInput(label: "Username", textController: _listEditorController[1]),
+                dosomespace(30, context),
 
                 TextInput(label: "Password", textController: _listEditorController[2]),
-                spacing(30),
+                dosomespace(30, context),
 
                 ConfermButton(
                   label: "Conferm",
@@ -65,9 +67,5 @@ class _BaseAccountState extends State<BaseAccount> {
         ),
       ),
     );
-  }
-
-  Widget spacing(double size) {
-    return SizedBox(height: MediaQuery.of(context).size.height / size);
   }
 }

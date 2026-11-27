@@ -1,5 +1,5 @@
 import 'package:drome/Account/base.dart';
-import 'package:drome/Home/base.dart';
+import 'package:drome/Main/base.dart';
 import 'package:drome/Utils/checklogin.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +45,7 @@ class _DromeState extends State<Drome> {
   Widget build(BuildContext context) {
     return switch (_authState) {
       AuthState.loading => const Scaffold(body: Center(child: CircularProgressIndicator())),
-      AuthState.auth => BaseHome(),
+      AuthState.auth => BaseMain(),
       AuthState.unauth => BaseAccount(updateAuth: updateAuth),
     };
   }

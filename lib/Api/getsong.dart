@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:drome/Utils/storage.dart';
 import 'package:http/http.dart' as http;
+
+import 'package:drome/Utils/storage.dart' as storage;
 import 'package:drome/Class/song.dart';
 
 Future<List<Song>> getSong() async {
@@ -40,7 +41,7 @@ Future<List<Song>> getSong() async {
 }
 
 Future<Uri> getUri() async {
-  final url = await storage.read(key: 'Server');
+  final url = await storage.getServer();
 
   final uri = Uri.parse(url!);
 
@@ -48,13 +49,14 @@ Future<Uri> getUri() async {
     scheme: uri.scheme,
     host: uri.host,
     path: "rest/search3",
+    port: uri.port,
     queryParameters: {
       'f': 'json',
       'v': '1.16.1',
       'c': 'Drome',
-      'u': '${await storage.read(key: 'Username')}',
-      't': '${await storage.read(key: 'Password')}',
-      's': '${await storage.read(key: 'Salt')}',
+      'u': '${await storage.getUsername()}',
+      't': '${await storage.getPassword()}',
+      's': '${await storage.getSalt()}',
       'artistCount': '0',
       'albumCount': '0',
       'songCount': '30',
